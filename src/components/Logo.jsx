@@ -1,8 +1,9 @@
 import React from 'react'
+import logo from './bl_logo.png';
 
 function Logo({ width = '100px' }) {
   return (
-    <div><img src="bl_logo" height={65} /></div>
+    <div><img src={logo} style={{ width }} /></div>
   )
 }
 
