@@ -92,21 +92,40 @@ export default function PostForm({ post }) {
             </div>
             <div className="w-1/3 px-2">
                 <Input
-                    label="Featured Image :"
+                    label="feauturedImage:"
                     type="file"
                     className="mb-4"
                     accept="image/png, image/jpg, image/jpeg, image/gif"
                     {...register("image", { required: !post })}
                 />
-                {post && (
+                {/* {post && (
                     <div className="w-full mb-4">
                         <img
+
                             src={appwriteService.getFilePreview(post.featuredImage)}
                             alt={post.title}
                             className="rounded-lg"
                         />
                     </div>
+                )} */}
+                {post?.featuredImage && (
+                    <div className="w-full mb-4">
+                        <img
+                            src={appwriteService.getFilePreview(post.featuredImage)}
+                            alt="Preview"
+                            className="rounded-lg"
+                            onError={() => console.error("Failed to load image")}
+                            onLoad={() =>
+                                console.log(
+                                    "Image loaded:",
+                                    appwriteService.getFilePreview(post.featuredImage)
+                                )
+                            }
+                        />
+                    </div>
                 )}
+
+
                 <Select
                     options={["active", "inactive"]}
                     label="Status"
